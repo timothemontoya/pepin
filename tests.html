@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pépin · tests du moteur</title>
+  <script>
+    try {
+      const choix = JSON.parse(localStorage.getItem('pepin.theme'));
+      document.documentElement.dataset.theme = choix
+        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch (e) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Blockly sert à vérifier les solutions de la bibliothèque -->
+  <script src="https://unpkg.com/blockly@11.2.1/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly@11.2.1/python_compressed.js"></script>
+  <script src="https://unpkg.com/blockly@11.2.1/msg/fr.js"></script>
+  <script type="module" src="js/tests.js"></script>
+</head>
+<body>
+  <header class="entete">
+    <div>
+      <h1 class="logo">🧪 Tests du moteur</h1>
+      <p class="slogan">Recharge la page après chaque modification. <a href="index.html">← Retour au jeu</a></p>
+    </div>
+  </header>
+  <main class="tests">
+    <p id="resume" class="resume">Les tests tournent… 🌱</p>
+    <div id="resultats"></div>
+  </main>
+</body>
+</html>

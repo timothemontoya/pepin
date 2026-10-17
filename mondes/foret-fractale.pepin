@@ -1,0 +1,1346 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "foret-fractale",
+  "titre": "La forêt fractale",
+  "auteur": "L'équipe Pépin",
+  "description": "Angles, fonctions à paramètres et récursivité : fais pousser des arbres et des flocons !",
+  "difficulte": 3,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "premier-trait",
+      "type": "fractale",
+      "titre": "Premier trait",
+      "concept": "dessiner avec Pépin",
+      "consigne": "Bienvenue dans la forêt fractale ! 🌀 Quand j'avance, une liane pousse derrière moi. Suis le modèle en pointillés : fais pousser la liane de 100 pas.",
+      "blocs": [
+        "pousser"
+      ],
+      "exigences": {
+        "maxBlocs": 1
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "liane_pousser",
+                  "inputs": {
+                    "LONGUEUR": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 100
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "carre",
+      "type": "fractale",
+      "titre": "Le carré",
+      "concept": "les angles",
+      "consigne": "Dessine un carré de côté 80. Un quart de tour, c'est 90 degrés !",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 4
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 80
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 90
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "etoile",
+      "type": "fractale",
+      "titre": "L'étoile",
+      "concept": null,
+      "consigne": "Une étoile à cinq branches ! Indice : à chaque pointe, je tourne de 144 degrés.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 5
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 100
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 144
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "trois-carres",
+      "type": "fractale",
+      "titre": "Trois carrés",
+      "concept": "les fonctions à paramètre",
+      "consigne": "Crée une fonction « carré » avec un paramètre « taille » (clique sur l'engrenage ⚙ du bloc), puis dessine trois carrés : 30, 60 et 90.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre",
+        "fonctions",
+        "variables",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "procedures_callnoreturn",
+                  "extraState": {
+                    "name": "carré",
+                    "params": [
+                      "taille"
+                    ]
+                  },
+                  "inputs": {
+                    "ARG0": {
+                      "block": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 30
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "procedures_callnoreturn",
+                      "extraState": {
+                        "name": "carré",
+                        "params": [
+                          "taille"
+                        ]
+                      },
+                      "inputs": {
+                        "ARG0": {
+                          "block": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 60
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "procedures_callnoreturn",
+                          "extraState": {
+                            "name": "carré",
+                            "params": [
+                              "taille"
+                            ]
+                          },
+                          "inputs": {
+                            "ARG0": {
+                              "block": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 90
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "extraState": {
+                "params": [
+                  {
+                    "name": "taille",
+                    "id": "v-taille"
+                  }
+                ]
+              },
+              "fields": {
+                "NAME": "carré"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_repeat_ext",
+                    "inputs": {
+                      "TIMES": {
+                        "shadow": {
+                          "type": "math_number",
+                          "fields": {
+                            "NUM": 4
+                          }
+                        }
+                      },
+                      "DO": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-taille"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 90
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "taille",
+            "id": "v-taille"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spirale",
+      "type": "fractale",
+      "titre": "La spirale",
+      "concept": "la récursivité",
+      "consigne": "Une fonction peut s'appeler elle-même : c'est la RÉCURSIVITÉ ! « spirale(longueur) » : si la longueur est plus grande que 10, pousse, tourne de 90°, puis appelle spirale(longueur − 10). Regarde la pile des fonctions grandir 📚",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "fonctions",
+        "variables",
+        "si",
+        "comparer",
+        "calcul",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "procedures_callnoreturn",
+                  "extraState": {
+                    "name": "spirale",
+                    "params": [
+                      "longueur"
+                    ]
+                  },
+                  "inputs": {
+                    "ARG0": {
+                      "block": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 100
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "extraState": {
+                "params": [
+                  {
+                    "name": "longueur",
+                    "id": "v-longueur"
+                  }
+                ]
+              },
+              "fields": {
+                "NAME": "spirale"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_if",
+                    "inputs": {
+                      "IF0": {
+                        "block": {
+                          "type": "logic_compare",
+                          "fields": {
+                            "OP": "GT"
+                          },
+                          "inputs": {
+                            "A": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-longueur"
+                                  }
+                                }
+                              }
+                            },
+                            "B": {
+                              "shadow": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 10
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DO0": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-longueur"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 90
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "procedures_callnoreturn",
+                                  "extraState": {
+                                    "name": "spirale",
+                                    "params": [
+                                      "longueur"
+                                    ]
+                                  },
+                                  "inputs": {
+                                    "ARG0": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "MINUS"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-longueur"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 10
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "longueur",
+            "id": "v-longueur"
+          }
+        ]
+      }
+    },
+    {
+      "id": "arbre",
+      "type": "fractale",
+      "titre": "L'arbre",
+      "concept": "la récursivité double",
+      "consigne": "Un arbre, c'est un tronc… avec deux petits arbres au bout ! « arbre(taille) » : pousse, tourne à gauche de 25°, dessine un arbre plus petit (taille − 12), tourne à droite de 50°, un autre petit arbre, tourne à gauche de 25°… et recule pour revenir au départ !",
+      "blocs": [
+        "pousser",
+        "reculer",
+        "tournerDe",
+        "fonctions",
+        "variables",
+        "si",
+        "comparer",
+        "calcul",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "procedures_callnoreturn",
+                  "extraState": {
+                    "name": "arbre",
+                    "params": [
+                      "taille"
+                    ]
+                  },
+                  "inputs": {
+                    "ARG0": {
+                      "block": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 60
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "extraState": {
+                "params": [
+                  {
+                    "name": "taille",
+                    "id": "v-taille"
+                  }
+                ]
+              },
+              "fields": {
+                "NAME": "arbre"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_if",
+                    "inputs": {
+                      "IF0": {
+                        "block": {
+                          "type": "logic_compare",
+                          "fields": {
+                            "OP": "GT"
+                          },
+                          "inputs": {
+                            "A": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-taille"
+                                  }
+                                }
+                              }
+                            },
+                            "B": {
+                              "shadow": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 10
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DO0": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-taille"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "gauche"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 25
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "procedures_callnoreturn",
+                                  "extraState": {
+                                    "name": "arbre",
+                                    "params": [
+                                      "taille"
+                                    ]
+                                  },
+                                  "inputs": {
+                                    "ARG0": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "MINUS"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-taille"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 12
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "liane_tourner",
+                                      "fields": {
+                                        "DIR": "droite"
+                                      },
+                                      "inputs": {
+                                        "ANGLE": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "fields": {
+                                              "NUM": 50
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "procedures_callnoreturn",
+                                          "extraState": {
+                                            "name": "arbre",
+                                            "params": [
+                                              "taille"
+                                            ]
+                                          },
+                                          "inputs": {
+                                            "ARG0": {
+                                              "block": {
+                                                "type": "math_arithmetic",
+                                                "fields": {
+                                                  "OP": "MINUS"
+                                                },
+                                                "inputs": {
+                                                  "A": {
+                                                    "block": {
+                                                      "type": "variables_get",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "v-taille"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "B": {
+                                                    "shadow": {
+                                                      "type": "math_number",
+                                                      "fields": {
+                                                        "NUM": 12
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "next": {
+                                            "block": {
+                                              "type": "liane_tourner",
+                                              "fields": {
+                                                "DIR": "gauche"
+                                              },
+                                              "inputs": {
+                                                "ANGLE": {
+                                                  "shadow": {
+                                                    "type": "math_number",
+                                                    "fields": {
+                                                      "NUM": 25
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "liane_reculer",
+                                                  "inputs": {
+                                                    "LONGUEUR": {
+                                                      "block": {
+                                                        "type": "variables_get",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "v-taille"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "taille",
+            "id": "v-taille"
+          }
+        ]
+      }
+    },
+    {
+      "id": "flocon",
+      "type": "fractale",
+      "titre": "Le flocon",
+      "concept": "les fractales",
+      "consigne": "Le flocon de Koch ! Pour dessiner un trait de niveau n, on dessine 4 traits de niveau n − 1, trois fois plus petits, avec une bosse au milieu (gauche 60°, droite 120°, gauche 60°). Au niveau 0, on pousse tout droit. Trois côtés de niveau 3, longueur 162.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre",
+        "fonctions",
+        "variables",
+        "siSinon",
+        "comparer",
+        "calcul",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 3
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "procedures_callnoreturn",
+                        "extraState": {
+                          "name": "koch",
+                          "params": [
+                            "n",
+                            "longueur"
+                          ]
+                        },
+                        "inputs": {
+                          "ARG0": {
+                            "block": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 3
+                              }
+                            }
+                          },
+                          "ARG1": {
+                            "block": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 162
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 120
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "extraState": {
+                "params": [
+                  {
+                    "name": "n",
+                    "id": "v-n"
+                  },
+                  {
+                    "name": "longueur",
+                    "id": "v-longueur"
+                  }
+                ]
+              },
+              "fields": {
+                "NAME": "koch"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_if",
+                    "extraState": {
+                      "hasElse": true
+                    },
+                    "inputs": {
+                      "IF0": {
+                        "block": {
+                          "type": "logic_compare",
+                          "fields": {
+                            "OP": "EQ"
+                          },
+                          "inputs": {
+                            "A": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-n"
+                                  }
+                                }
+                              }
+                            },
+                            "B": {
+                              "shadow": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DO0": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-longueur"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ELSE": {
+                        "block": {
+                          "type": "procedures_callnoreturn",
+                          "extraState": {
+                            "name": "koch",
+                            "params": [
+                              "n",
+                              "longueur"
+                            ]
+                          },
+                          "inputs": {
+                            "ARG0": {
+                              "block": {
+                                "type": "math_arithmetic",
+                                "fields": {
+                                  "OP": "MINUS"
+                                },
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-n"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "fields": {
+                                        "NUM": 1
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ARG1": {
+                              "block": {
+                                "type": "math_arithmetic",
+                                "fields": {
+                                  "OP": "DIVIDE"
+                                },
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-longueur"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "fields": {
+                                        "NUM": 3
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "gauche"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 60
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "procedures_callnoreturn",
+                                  "extraState": {
+                                    "name": "koch",
+                                    "params": [
+                                      "n",
+                                      "longueur"
+                                    ]
+                                  },
+                                  "inputs": {
+                                    "ARG0": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "MINUS"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-n"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 1
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "ARG1": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "DIVIDE"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-longueur"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 3
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "liane_tourner",
+                                      "fields": {
+                                        "DIR": "droite"
+                                      },
+                                      "inputs": {
+                                        "ANGLE": {
+                                          "shadow": {
+                                            "type": "math_number",
+                                            "fields": {
+                                              "NUM": 120
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "procedures_callnoreturn",
+                                          "extraState": {
+                                            "name": "koch",
+                                            "params": [
+                                              "n",
+                                              "longueur"
+                                            ]
+                                          },
+                                          "inputs": {
+                                            "ARG0": {
+                                              "block": {
+                                                "type": "math_arithmetic",
+                                                "fields": {
+                                                  "OP": "MINUS"
+                                                },
+                                                "inputs": {
+                                                  "A": {
+                                                    "block": {
+                                                      "type": "variables_get",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "v-n"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "B": {
+                                                    "shadow": {
+                                                      "type": "math_number",
+                                                      "fields": {
+                                                        "NUM": 1
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "ARG1": {
+                                              "block": {
+                                                "type": "math_arithmetic",
+                                                "fields": {
+                                                  "OP": "DIVIDE"
+                                                },
+                                                "inputs": {
+                                                  "A": {
+                                                    "block": {
+                                                      "type": "variables_get",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "v-longueur"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "B": {
+                                                    "shadow": {
+                                                      "type": "math_number",
+                                                      "fields": {
+                                                        "NUM": 3
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "next": {
+                                            "block": {
+                                              "type": "liane_tourner",
+                                              "fields": {
+                                                "DIR": "gauche"
+                                              },
+                                              "inputs": {
+                                                "ANGLE": {
+                                                  "shadow": {
+                                                    "type": "math_number",
+                                                    "fields": {
+                                                      "NUM": 60
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "procedures_callnoreturn",
+                                                  "extraState": {
+                                                    "name": "koch",
+                                                    "params": [
+                                                      "n",
+                                                      "longueur"
+                                                    ]
+                                                  },
+                                                  "inputs": {
+                                                    "ARG0": {
+                                                      "block": {
+                                                        "type": "math_arithmetic",
+                                                        "fields": {
+                                                          "OP": "MINUS"
+                                                        },
+                                                        "inputs": {
+                                                          "A": {
+                                                            "block": {
+                                                              "type": "variables_get",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "v-n"
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "B": {
+                                                            "shadow": {
+                                                              "type": "math_number",
+                                                              "fields": {
+                                                                "NUM": 1
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "ARG1": {
+                                                      "block": {
+                                                        "type": "math_arithmetic",
+                                                        "fields": {
+                                                          "OP": "DIVIDE"
+                                                        },
+                                                        "inputs": {
+                                                          "A": {
+                                                            "block": {
+                                                              "type": "variables_get",
+                                                              "fields": {
+                                                                "VAR": {
+                                                                  "id": "v-longueur"
+                                                                }
+                                                              }
+                                                            }
+                                                          },
+                                                          "B": {
+                                                            "shadow": {
+                                                              "type": "math_number",
+                                                              "fields": {
+                                                                "NUM": 3
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "n",
+            "id": "v-n"
+          },
+          {
+            "name": "longueur",
+            "id": "v-longueur"
+          }
+        ]
+      }
+    }
+  ],
+  "vitrine": 6
+}

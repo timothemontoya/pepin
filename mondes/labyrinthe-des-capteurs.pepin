@@ -1,0 +1,678 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "labyrinthe-des-capteurs",
+  "titre": "Le labyrinthe des capteurs",
+  "auteur": "L'équipe Pépin",
+  "description": "Pépin a des yeux sur les côtés ! Boucles imbriquées, débogage, fonctions, et l'algorithme de la main droite pour sortir de n'importe quel labyrinthe.",
+  "difficulte": 2,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "tour-du-potager",
+      "type": "jardin",
+      "titre": "Le tour du potager",
+      "concept": "les boucles imbriquées",
+      "consigne": "Quinze graines tout autour du potager ! Chaque côté : 4 fois « avancer, arroser ». Et il y a 4 côtés… Une boucle DANS une boucle ! 🔁",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        ">oooo",
+        "o###o",
+        "o###o",
+        "o###o",
+        "ooooo"
+      ],
+      "exigences": {
+        "maxBlocs": 5
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 4
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "controls_repeat",
+                        "fields": {
+                          "TIMES": 4
+                        },
+                        "inputs": {
+                          "DO": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_arroser"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "pepin_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "le-bug",
+      "type": "jardin",
+      "titre": "Le bug 🐛",
+      "concept": "déboguer un programme",
+      "consigne": "J'ai écrit un programme… mais il contient DEUX bugs 🐛 ! Clique sur « 👣 Pas à pas » pour le suivre action par action, trouve où ça coince, et corrige-le.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser"
+      ],
+      "depart": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_tourner",
+                          "fields": {
+                            "DIR": "gauche"
+                          },
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_avancer",
+                                  "next": {
+                                    "block": {
+                                      "type": "pepin_tourner",
+                                      "fields": {
+                                        "DIR": "gauche"
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "pepin_arroser",
+                                          "next": {
+                                            "block": {
+                                              "type": "pepin_avancer"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      },
+      "carte": [
+        ">..#",
+        "##.#",
+        "##.o"
+      ],
+      "exigences": {
+        "maxBlocs": 8
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_tourner",
+                          "fields": {
+                            "DIR": "droite"
+                          },
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_avancer",
+                                  "next": {
+                                    "block": {
+                                      "type": "pepin_tourner",
+                                      "fields": {
+                                        "DIR": "gauche"
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "pepin_avancer",
+                                          "next": {
+                                            "block": {
+                                              "type": "pepin_arroser"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "yeux-sur-les-cotes",
+      "type": "jardin",
+      "titre": "Des yeux sur les côtés",
+      "concept": "les capteurs gauche et droite",
+      "consigne": "Nouveaux capteurs : « la voie est libre à gauche / à droite » ! Ma technique : si c'est libre devant, j'avance ; sinon, je tourne du côté libre. Ton programme sera testé sur 3 couloirs différents.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "tantQue",
+        "siSinon",
+        "non",
+        "devantLibre",
+        "gaucheLibre",
+        "droiteLibre",
+        "surGraine"
+      ],
+      "carte": [
+        ">..####",
+        "##.####",
+        "##....#",
+        "#####.#",
+        "#####.o"
+      ],
+      "autresCartes": [
+        [
+          "v#####",
+          ".#...#",
+          ".#.#.#",
+          "...#.#",
+          "####.#",
+          "####o#"
+        ],
+        [
+          "...##",
+          ".#.##",
+          "^#..o"
+        ]
+      ],
+      "exigences": {
+        "maxBlocs": 11
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "logic_negate",
+                        "inputs": {
+                          "BOOL": {
+                            "block": {
+                              "type": "pepin_sur_graine"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "controls_if",
+                        "extraState": {
+                          "hasElse": true
+                        },
+                        "inputs": {
+                          "IF0": {
+                            "block": {
+                              "type": "pepin_devant_libre"
+                            }
+                          },
+                          "DO0": {
+                            "block": {
+                              "type": "pepin_avancer"
+                            }
+                          },
+                          "ELSE": {
+                            "block": {
+                              "type": "controls_if",
+                              "extraState": {
+                                "hasElse": true
+                              },
+                              "inputs": {
+                                "IF0": {
+                                  "block": {
+                                    "type": "pepin_gauche_libre"
+                                  }
+                                },
+                                "DO0": {
+                                  "block": {
+                                    "type": "pepin_tourner",
+                                    "fields": {
+                                      "DIR": "gauche"
+                                    }
+                                  }
+                                },
+                                "ELSE": {
+                                  "block": {
+                                    "type": "pepin_tourner",
+                                    "fields": {
+                                      "DIR": "droite"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_arroser"
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "les-impasses",
+      "type": "jardin",
+      "titre": "Les impasses",
+      "concept": "une fonction + des capteurs",
+      "consigne": "Le long du chemin, des impasses partent sur ma droite, avec une graine au fond. Crée une fonction « explorer » : entrer dans l'impasse, avancer jusqu'au bout, arroser, revenir. Puis : tant que je peux avancer, j'avance, et SI c'est libre à droite, j'explore !",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "tantQue",
+        "si",
+        "devantLibre",
+        "droiteLibre",
+        "fonctions"
+      ],
+      "carte": [
+        ">........",
+        "#.###.#.#",
+        "#o###.#o#",
+        "#####o###"
+      ],
+      "autresCartes": [
+        [
+          ">......",
+          "##.#.##",
+          "##o#o##"
+        ],
+        [
+          ">.......",
+          "###.###.",
+          "###.###.",
+          "###.###o",
+          "###o####"
+        ]
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "pepin_devant_libre"
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "controls_if",
+                            "inputs": {
+                              "IF0": {
+                                "block": {
+                                  "type": "pepin_droite_libre"
+                                }
+                              },
+                              "DO0": {
+                                "block": {
+                                  "type": "procedures_callnoreturn",
+                                  "extraState": {
+                                    "name": "explorer",
+                                    "params": []
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "fields": {
+                "NAME": "explorer"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "pepin_tourner",
+                    "fields": {
+                      "DIR": "droite"
+                    },
+                    "next": {
+                      "block": {
+                        "type": "controls_whileUntil",
+                        "fields": {
+                          "MODE": "WHILE"
+                        },
+                        "inputs": {
+                          "BOOL": {
+                            "block": {
+                              "type": "pepin_devant_libre"
+                            }
+                          },
+                          "DO": {
+                            "block": {
+                              "type": "pepin_avancer"
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "pepin_arroser",
+                            "next": {
+                              "block": {
+                                "type": "pepin_tourner",
+                                "fields": {
+                                  "DIR": "droite"
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "pepin_tourner",
+                                    "fields": {
+                                      "DIR": "droite"
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "controls_whileUntil",
+                                        "fields": {
+                                          "MODE": "WHILE"
+                                        },
+                                        "inputs": {
+                                          "BOOL": {
+                                            "block": {
+                                              "type": "pepin_devant_libre"
+                                            }
+                                          },
+                                          "DO": {
+                                            "block": {
+                                              "type": "pepin_avancer"
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "pepin_tourner",
+                                            "fields": {
+                                              "DIR": "droite"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "main-droite",
+      "type": "jardin",
+      "titre": "La main droite",
+      "concept": "un algorithme pour tous les labyrinthes",
+      "consigne": "Le secret pour sortir de N'IMPORTE QUEL labyrinthe : garder la main droite sur le mur ! À chaque pas : si c'est libre à droite, je tourne à droite et j'avance ; sinon, si c'est libre devant, j'avance ; sinon, je tourne à gauche. Jusqu'à la graine ! 3 labyrinthes à tester.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "tantQue",
+        "siSinon",
+        "non",
+        "devantLibre",
+        "gaucheLibre",
+        "droiteLibre",
+        "surGraine"
+      ],
+      "carte": [
+        "v#.......",
+        ".#.#####.",
+        ".#.....#.",
+        ".#######.",
+        ".#...#...",
+        ".#.#.#.#.",
+        "...#...#o"
+      ],
+      "autresCartes": [
+        [
+          ">......#...",
+          "######.###.",
+          ".#...#...#.",
+          ".#.#.###.#.",
+          ".#.#...#...",
+          ".#.#.#####.",
+          "...#......o"
+        ],
+        [
+          ">....#.......",
+          "####.#.#.####",
+          "...#.#.#.....",
+          ".###.#######.",
+          ".....#.....#.",
+          ".#####.###.#.",
+          ".#...#...#...",
+          ".#.#.###.###.",
+          "...#.....#..o"
+        ]
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "logic_negate",
+                        "inputs": {
+                          "BOOL": {
+                            "block": {
+                              "type": "pepin_sur_graine"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "controls_if",
+                        "extraState": {
+                          "hasElse": true
+                        },
+                        "inputs": {
+                          "IF0": {
+                            "block": {
+                              "type": "pepin_droite_libre"
+                            }
+                          },
+                          "DO0": {
+                            "block": {
+                              "type": "pepin_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "pepin_avancer"
+                                }
+                              }
+                            }
+                          },
+                          "ELSE": {
+                            "block": {
+                              "type": "controls_if",
+                              "extraState": {
+                                "hasElse": true
+                              },
+                              "inputs": {
+                                "IF0": {
+                                  "block": {
+                                    "type": "pepin_devant_libre"
+                                  }
+                                },
+                                "DO0": {
+                                  "block": {
+                                    "type": "pepin_avancer"
+                                  }
+                                },
+                                "ELSE": {
+                                  "block": {
+                                    "type": "pepin_tourner",
+                                    "fields": {
+                                      "DIR": "gauche"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_arroser"
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "vitrine": 4
+}

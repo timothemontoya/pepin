@@ -1,0 +1,2131 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "algorithmes-de-la-serre",
+  "titre": "Les algorithmes de la serre",
+  "auteur": "L'équipe Pépin",
+  "description": "Compter, faire une moyenne, chercher, trier… et chercher très vite ! Les grands algorithmes sur les listes, avec « et », le modulo et la dichotomie.",
+  "difficulte": 3,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "les-geantes",
+      "type": "etagere",
+      "titre": "Les géantes",
+      "concept": "compter avec une variable",
+      "consigne": "Combien de plantes mesurent PLUS de 5 ? Prends un bocal « compteur » 🫙 qui commence à 0, et ajoute 1 à chaque géante.",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre",
+        "si",
+        "comparer",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "essais": [
+        {
+          "pots": [
+            3,
+            7,
+            9,
+            2,
+            6
+          ],
+          "reponse": 3
+        },
+        {
+          "pots": [
+            1,
+            2,
+            3
+          ],
+          "reponse": 0
+        },
+        {
+          "pots": [
+            8,
+            8,
+            1,
+            10
+          ],
+          "reponse": 3
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-compteur"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_for",
+                      "fields": {
+                        "VAR": {
+                          "id": "v-i"
+                        }
+                      },
+                      "inputs": {
+                        "FROM": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "TO": {
+                          "block": {
+                            "type": "math_arithmetic",
+                            "fields": {
+                              "OP": "MINUS"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "serre_nombre"
+                                }
+                              },
+                              "B": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "BY": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "controls_if",
+                            "inputs": {
+                              "IF0": {
+                                "block": {
+                                  "type": "logic_compare",
+                                  "fields": {
+                                    "OP": "GT"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "serre_hauteur",
+                                        "inputs": {
+                                          "INDEX": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-i"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 5
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "DO0": {
+                                "block": {
+                                  "type": "variables_set",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "v-compteur"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALUE": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "ADD"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-compteur"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 1
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serre_repondre",
+                          "inputs": {
+                            "VALEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-compteur"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "compteur",
+            "id": "v-compteur"
+          },
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "entre-deux",
+      "type": "etagere",
+      "titre": "Ni trop petites, ni trop grandes",
+      "concept": "« et » : deux conditions à la fois",
+      "consigne": "Combien de plantes mesurent entre 3 et 6 (3 et 6 compris) ? Il faut que la hauteur soit ≥ 3 ET ≤ 6 : le bloc « et » est vrai seulement si les DEUX conditions sont vraies.",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre",
+        "si",
+        "comparer",
+        "etOu",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "essais": [
+        {
+          "pots": [
+            1,
+            3,
+            6,
+            7,
+            4
+          ],
+          "reponse": 3
+        },
+        {
+          "pots": [
+            2,
+            8,
+            5
+          ],
+          "reponse": 1
+        },
+        {
+          "pots": [
+            3,
+            3,
+            9,
+            0,
+            6,
+            2
+          ],
+          "reponse": 3
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-compteur"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_for",
+                      "fields": {
+                        "VAR": {
+                          "id": "v-i"
+                        }
+                      },
+                      "inputs": {
+                        "FROM": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "TO": {
+                          "block": {
+                            "type": "math_arithmetic",
+                            "fields": {
+                              "OP": "MINUS"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "serre_nombre"
+                                }
+                              },
+                              "B": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "BY": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "controls_if",
+                            "inputs": {
+                              "IF0": {
+                                "block": {
+                                  "type": "logic_operation",
+                                  "fields": {
+                                    "OP": "AND"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "logic_compare",
+                                        "fields": {
+                                          "OP": "GTE"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "serre_hauteur",
+                                              "inputs": {
+                                                "INDEX": {
+                                                  "block": {
+                                                    "type": "variables_get",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "v-i"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 3
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "logic_compare",
+                                        "fields": {
+                                          "OP": "LTE"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "serre_hauteur",
+                                              "inputs": {
+                                                "INDEX": {
+                                                  "block": {
+                                                    "type": "variables_get",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "v-i"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 6
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "DO0": {
+                                "block": {
+                                  "type": "variables_set",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "v-compteur"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALUE": {
+                                      "block": {
+                                        "type": "math_arithmetic",
+                                        "fields": {
+                                          "OP": "ADD"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-compteur"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "shadow": {
+                                              "type": "math_number",
+                                              "fields": {
+                                                "NUM": 1
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serre_repondre",
+                          "inputs": {
+                            "VALEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-compteur"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "compteur",
+            "id": "v-compteur"
+          },
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "que-des-pairs",
+      "type": "etagere",
+      "titre": "Que des nombres pairs",
+      "concept": "le reste de la division (modulo)",
+      "consigne": "Je n'aime que les nombres pairs ! Arrose une fois chaque plante de hauteur IMPAIRE. Astuce : le reste de la division par 2 (le « modulo ») vaut 0 pour un nombre pair, et 1 pour un impair.",
+      "blocs": [
+        "hauteur",
+        "arroserPot",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "si",
+        "comparer",
+        "calcul",
+        "modulo"
+      ],
+      "objectif": "cible",
+      "essais": [
+        {
+          "pots": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cible": [
+            2,
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "pots": [
+            5,
+            5,
+            8,
+            0,
+            7
+          ],
+          "cible": [
+            6,
+            6,
+            8,
+            0,
+            8
+          ]
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_for",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-i"
+                    }
+                  },
+                  "inputs": {
+                    "FROM": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    },
+                    "TO": {
+                      "block": {
+                        "type": "math_arithmetic",
+                        "fields": {
+                          "OP": "MINUS"
+                        },
+                        "inputs": {
+                          "A": {
+                            "block": {
+                              "type": "serre_nombre"
+                            }
+                          },
+                          "B": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 1
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "BY": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 1
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "controls_if",
+                        "inputs": {
+                          "IF0": {
+                            "block": {
+                              "type": "logic_compare",
+                              "fields": {
+                                "OP": "EQ"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "math_modulo",
+                                    "inputs": {
+                                      "DIVIDEND": {
+                                        "block": {
+                                          "type": "serre_hauteur",
+                                          "inputs": {
+                                            "INDEX": {
+                                              "block": {
+                                                "type": "variables_get",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "v-i"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "DIVISOR": {
+                                        "shadow": {
+                                          "type": "math_number",
+                                          "fields": {
+                                            "NUM": 2
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "B": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 1
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "DO0": {
+                            "block": {
+                              "type": "serre_arroser",
+                              "inputs": {
+                                "INDEX": {
+                                  "block": {
+                                    "type": "variables_get",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "v-i"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "la-moyenne",
+      "type": "etagere",
+      "titre": "La taille moyenne",
+      "concept": "la moyenne",
+      "consigne": "Quelle est la taille MOYENNE des plantes ? C'est la somme de toutes les hauteurs, divisée par le nombre de pots.",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "essais": [
+        {
+          "pots": [
+            2,
+            4,
+            6
+          ],
+          "reponse": 4
+        },
+        {
+          "pots": [
+            1,
+            2
+          ],
+          "reponse": 1.5
+        },
+        {
+          "pots": [
+            5,
+            3,
+            4,
+            8
+          ],
+          "reponse": 5
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-total"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_for",
+                      "fields": {
+                        "VAR": {
+                          "id": "v-i"
+                        }
+                      },
+                      "inputs": {
+                        "FROM": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 0
+                            }
+                          }
+                        },
+                        "TO": {
+                          "block": {
+                            "type": "math_arithmetic",
+                            "fields": {
+                              "OP": "MINUS"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "serre_nombre"
+                                }
+                              },
+                              "B": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "BY": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "variables_set",
+                            "fields": {
+                              "VAR": {
+                                "id": "v-total"
+                              }
+                            },
+                            "inputs": {
+                              "VALUE": {
+                                "block": {
+                                  "type": "math_arithmetic",
+                                  "fields": {
+                                    "OP": "ADD"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "variables_get",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-total"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "serre_hauteur",
+                                        "inputs": {
+                                          "INDEX": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-i"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serre_repondre",
+                          "inputs": {
+                            "VALEUR": {
+                              "block": {
+                                "type": "math_arithmetic",
+                                "fields": {
+                                  "OP": "DIVIDE"
+                                },
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-total"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "block": {
+                                      "type": "serre_nombre"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "total",
+            "id": "v-total"
+          },
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ou-est-la-plus-petite",
+      "type": "etagere",
+      "titre": "Où est la plus petite ?",
+      "concept": "retenir une position",
+      "consigne": "Cette fois, je ne veux pas la hauteur de la plus petite plante, mais son NUMÉRO de pot ! Retiens la position du record dans un bocal. (S'il y a égalité, réponds la première.)",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre",
+        "si",
+        "comparer",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "essais": [
+        {
+          "pots": [
+            4,
+            2,
+            7
+          ],
+          "reponse": 1
+        },
+        {
+          "pots": [
+            9,
+            8,
+            3,
+            5,
+            1
+          ],
+          "reponse": 4
+        },
+        {
+          "pots": [
+            1,
+            6,
+            6
+          ],
+          "reponse": 0
+        },
+        {
+          "pots": [
+            5,
+            5,
+            2,
+            2
+          ],
+          "reponse": 2
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-position"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_for",
+                      "fields": {
+                        "VAR": {
+                          "id": "v-i"
+                        }
+                      },
+                      "inputs": {
+                        "FROM": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        },
+                        "TO": {
+                          "block": {
+                            "type": "math_arithmetic",
+                            "fields": {
+                              "OP": "MINUS"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "serre_nombre"
+                                }
+                              },
+                              "B": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 1
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "BY": {
+                          "shadow": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 1
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "controls_if",
+                            "inputs": {
+                              "IF0": {
+                                "block": {
+                                  "type": "logic_compare",
+                                  "fields": {
+                                    "OP": "LT"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "serre_hauteur",
+                                        "inputs": {
+                                          "INDEX": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-i"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "serre_hauteur",
+                                        "inputs": {
+                                          "INDEX": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-position"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "DO0": {
+                                "block": {
+                                  "type": "variables_set",
+                                  "fields": {
+                                    "VAR": {
+                                      "id": "v-position"
+                                    }
+                                  },
+                                  "inputs": {
+                                    "VALUE": {
+                                      "block": {
+                                        "type": "variables_get",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-i"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serre_repondre",
+                          "inputs": {
+                            "VALEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-position"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "position",
+            "id": "v-position"
+          },
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "premiere-geante",
+      "type": "etagere",
+      "titre": "La première géante",
+      "concept": "chercher et s’arrêter à temps",
+      "consigne": "Quel est le numéro de la PREMIÈRE plante qui mesure 8 ou plus ? S'il n'y en a aucune, réponds le nombre de pots. Avance tant que i < nombre de pots ET que la plante n°i est trop petite. Le « et » est paresseux : si la première condition est fausse, il ne regarde même pas la seconde !",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "variables",
+        "tantQue",
+        "comparer",
+        "etOu",
+        "calcul",
+        "nombre",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "essais": [
+        {
+          "pots": [
+            3,
+            9,
+            8
+          ],
+          "reponse": 1
+        },
+        {
+          "pots": [
+            8,
+            1
+          ],
+          "reponse": 0
+        },
+        {
+          "pots": [
+            1,
+            2,
+            3
+          ],
+          "reponse": 3
+        },
+        {
+          "pots": [
+            5,
+            7,
+            10,
+            12
+          ],
+          "reponse": 2
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-i"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "controls_whileUntil",
+                      "fields": {
+                        "MODE": "WHILE"
+                      },
+                      "inputs": {
+                        "BOOL": {
+                          "block": {
+                            "type": "logic_operation",
+                            "fields": {
+                              "OP": "AND"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "logic_compare",
+                                  "fields": {
+                                    "OP": "LT"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "variables_get",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-i"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "block": {
+                                        "type": "serre_nombre"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "B": {
+                                "block": {
+                                  "type": "logic_compare",
+                                  "fields": {
+                                    "OP": "LT"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "serre_hauteur",
+                                        "inputs": {
+                                          "INDEX": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-i"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 8
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "variables_set",
+                            "fields": {
+                              "VAR": {
+                                "id": "v-i"
+                              }
+                            },
+                            "inputs": {
+                              "VALUE": {
+                                "block": {
+                                  "type": "math_arithmetic",
+                                  "fields": {
+                                    "OP": "ADD"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "variables_get",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-i"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "serre_repondre",
+                          "inputs": {
+                            "VALEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-i"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tri-selection",
+      "type": "etagere",
+      "titre": "Le tri par sélection",
+      "concept": "trier en cherchant le plus petit",
+      "consigne": "Un autre tri, très naturel : cherche le plus petit pot, mets-le en premier (échange). Puis cherche le plus petit parmi ceux qui restent, mets-le en deuxième… et ainsi de suite !",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre",
+        "echanger",
+        "si",
+        "comparer"
+      ],
+      "objectif": "trier",
+      "essais": [
+        {
+          "pots": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "pots": [
+            5,
+            2,
+            4,
+            1,
+            3
+          ]
+        },
+        {
+          "pots": [
+            2,
+            2,
+            1,
+            4
+          ]
+        },
+        {
+          "pots": [
+            9,
+            7,
+            5,
+            3,
+            1
+          ]
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_for",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-i"
+                    }
+                  },
+                  "inputs": {
+                    "FROM": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    },
+                    "TO": {
+                      "block": {
+                        "type": "math_arithmetic",
+                        "fields": {
+                          "OP": "MINUS"
+                        },
+                        "inputs": {
+                          "A": {
+                            "block": {
+                              "type": "serre_nombre"
+                            }
+                          },
+                          "B": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 2
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "BY": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 1
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "variables_set",
+                        "fields": {
+                          "VAR": {
+                            "id": "v-mini"
+                          }
+                        },
+                        "inputs": {
+                          "VALUE": {
+                            "block": {
+                              "type": "variables_get",
+                              "fields": {
+                                "VAR": {
+                                  "id": "v-i"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "controls_for",
+                            "fields": {
+                              "VAR": {
+                                "id": "v-j"
+                              }
+                            },
+                            "inputs": {
+                              "FROM": {
+                                "block": {
+                                  "type": "math_arithmetic",
+                                  "fields": {
+                                    "OP": "ADD"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "variables_get",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-i"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "B": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "TO": {
+                                "block": {
+                                  "type": "math_arithmetic",
+                                  "fields": {
+                                    "OP": "MINUS"
+                                  },
+                                  "inputs": {
+                                    "A": {
+                                      "block": {
+                                        "type": "serre_nombre"
+                                      }
+                                    },
+                                    "B": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "BY": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 1
+                                  }
+                                }
+                              },
+                              "DO": {
+                                "block": {
+                                  "type": "controls_if",
+                                  "inputs": {
+                                    "IF0": {
+                                      "block": {
+                                        "type": "logic_compare",
+                                        "fields": {
+                                          "OP": "LT"
+                                        },
+                                        "inputs": {
+                                          "A": {
+                                            "block": {
+                                              "type": "serre_hauteur",
+                                              "inputs": {
+                                                "INDEX": {
+                                                  "block": {
+                                                    "type": "variables_get",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "v-j"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "B": {
+                                            "block": {
+                                              "type": "serre_hauteur",
+                                              "inputs": {
+                                                "INDEX": {
+                                                  "block": {
+                                                    "type": "variables_get",
+                                                    "fields": {
+                                                      "VAR": {
+                                                        "id": "v-mini"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "DO0": {
+                                      "block": {
+                                        "type": "variables_set",
+                                        "fields": {
+                                          "VAR": {
+                                            "id": "v-mini"
+                                          }
+                                        },
+                                        "inputs": {
+                                          "VALUE": {
+                                            "block": {
+                                              "type": "variables_get",
+                                              "fields": {
+                                                "VAR": {
+                                                  "id": "v-j"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "serre_echanger",
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-i"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-mini"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "i",
+            "id": "v-i"
+          },
+          {
+            "name": "mini",
+            "id": "v-mini"
+          },
+          {
+            "name": "j",
+            "id": "v-j"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dichotomie",
+      "type": "etagere",
+      "titre": "La dichotomie",
+      "concept": "chercher très vite (la complexité)",
+      "consigne": "Les 12 pots sont déjà rangés. Trouve le numéro du premier pot qui mesure 8 ou plus… en regardant 4 pots MAXIMUM ! 😱 L'astuce : regarde le pot du milieu. S'il est assez grand, la réponse est à gauche (lui compris) ; sinon, elle est à droite. À chaque regard, tu élimines la moitié des pots ! Garde deux bocaux « bas » et « haut », et arrondis le milieu à l'inférieur.",
+      "blocs": [
+        "hauteur",
+        "nombreDePots",
+        "variables",
+        "tantQue",
+        "siSinon",
+        "comparer",
+        "calcul",
+        "arrondi",
+        "nombre",
+        "repondre"
+      ],
+      "objectif": "reponse",
+      "maxRegards": 4,
+      "essais": [
+        {
+          "pots": [
+            1,
+            2,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "reponse": 7
+        },
+        {
+          "pots": [
+            0,
+            1,
+            1,
+            2,
+            3,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            15
+          ],
+          "reponse": 10
+        },
+        {
+          "pots": [
+            8,
+            9,
+            9,
+            10,
+            10,
+            11,
+            12,
+            13,
+            13,
+            14,
+            15,
+            15
+          ],
+          "reponse": 0
+        },
+        {
+          "pots": [
+            1,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            6,
+            7,
+            7,
+            7,
+            9
+          ],
+          "reponse": 11
+        }
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "variables_set",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-bas"
+                    }
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 0
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "variables_set",
+                      "fields": {
+                        "VAR": {
+                          "id": "v-haut"
+                        }
+                      },
+                      "inputs": {
+                        "VALUE": {
+                          "block": {
+                            "type": "serre_nombre"
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "controls_whileUntil",
+                          "fields": {
+                            "MODE": "WHILE"
+                          },
+                          "inputs": {
+                            "BOOL": {
+                              "block": {
+                                "type": "logic_compare",
+                                "fields": {
+                                  "OP": "LT"
+                                },
+                                "inputs": {
+                                  "A": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-bas"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "B": {
+                                    "block": {
+                                      "type": "variables_get",
+                                      "fields": {
+                                        "VAR": {
+                                          "id": "v-haut"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "DO": {
+                              "block": {
+                                "type": "variables_set",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-milieu"
+                                  }
+                                },
+                                "inputs": {
+                                  "VALUE": {
+                                    "block": {
+                                      "type": "math_round",
+                                      "fields": {
+                                        "OP": "ROUNDDOWN"
+                                      },
+                                      "inputs": {
+                                        "NUM": {
+                                          "block": {
+                                            "type": "math_arithmetic",
+                                            "fields": {
+                                              "OP": "DIVIDE"
+                                            },
+                                            "inputs": {
+                                              "A": {
+                                                "block": {
+                                                  "type": "math_arithmetic",
+                                                  "fields": {
+                                                    "OP": "ADD"
+                                                  },
+                                                  "inputs": {
+                                                    "A": {
+                                                      "block": {
+                                                        "type": "variables_get",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "v-bas"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "B": {
+                                                      "block": {
+                                                        "type": "variables_get",
+                                                        "fields": {
+                                                          "VAR": {
+                                                            "id": "v-haut"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "B": {
+                                                "shadow": {
+                                                  "type": "math_number",
+                                                  "fields": {
+                                                    "NUM": 2
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "controls_if",
+                                    "extraState": {
+                                      "hasElse": true
+                                    },
+                                    "inputs": {
+                                      "IF0": {
+                                        "block": {
+                                          "type": "logic_compare",
+                                          "fields": {
+                                            "OP": "GTE"
+                                          },
+                                          "inputs": {
+                                            "A": {
+                                              "block": {
+                                                "type": "serre_hauteur",
+                                                "inputs": {
+                                                  "INDEX": {
+                                                    "block": {
+                                                      "type": "variables_get",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "v-milieu"
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "B": {
+                                              "shadow": {
+                                                "type": "math_number",
+                                                "fields": {
+                                                  "NUM": 8
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "DO0": {
+                                        "block": {
+                                          "type": "variables_set",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "v-haut"
+                                            }
+                                          },
+                                          "inputs": {
+                                            "VALUE": {
+                                              "block": {
+                                                "type": "variables_get",
+                                                "fields": {
+                                                  "VAR": {
+                                                    "id": "v-milieu"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "ELSE": {
+                                        "block": {
+                                          "type": "variables_set",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "v-bas"
+                                            }
+                                          },
+                                          "inputs": {
+                                            "VALUE": {
+                                              "block": {
+                                                "type": "math_arithmetic",
+                                                "fields": {
+                                                  "OP": "ADD"
+                                                },
+                                                "inputs": {
+                                                  "A": {
+                                                    "block": {
+                                                      "type": "variables_get",
+                                                      "fields": {
+                                                        "VAR": {
+                                                          "id": "v-milieu"
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "B": {
+                                                    "shadow": {
+                                                      "type": "math_number",
+                                                      "fields": {
+                                                        "NUM": 1
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "serre_repondre",
+                              "inputs": {
+                                "VALEUR": {
+                                  "block": {
+                                    "type": "variables_get",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "v-bas"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "bas",
+            "id": "v-bas"
+          },
+          {
+            "name": "haut",
+            "id": "v-haut"
+          },
+          {
+            "name": "milieu",
+            "id": "v-milieu"
+          }
+        ]
+      }
+    }
+  ],
+  "vitrine": 6
+}

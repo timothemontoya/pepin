@@ -1,0 +1,474 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "petites-graines",
+  "titre": "Les petites graines",
+  "auteur": "L'équipe Pépin",
+  "description": "Pour les tout-petits programmeurs : donner des ordres dans le bon ordre, s'orienter, et répéter un motif. Idéal dès le CP !",
+  "difficulte": 1,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "bonjour",
+      "type": "jardin",
+      "titre": "Bonjour Pépin !",
+      "concept": "donner des ordres",
+      "consigne": "Coucou ! 🌱 Je fais exactement ce que disent les blocs, dans l'ordre. Fais-moi avancer jusqu'à la graine, puis arrose-la.",
+      "blocs": [
+        "avancer",
+        "arroser"
+      ],
+      "carte": [
+        ">.o"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_arroser"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "deux-graines",
+      "type": "jardin",
+      "titre": "Deux graines",
+      "concept": "l'ordre des instructions",
+      "consigne": "Deux graines cette fois ! Attention à l'ordre : j'arrose seulement la case où je me trouve.",
+      "blocs": [
+        "avancer",
+        "arroser"
+      ],
+      "carte": [
+        ">o.o"
+      ],
+      "exigences": {
+        "maxBlocs": 5
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_arroser",
+                      "next": {
+                        "block": {
+                          "type": "pepin_avancer",
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_arroser"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tout-en-haut",
+      "type": "jardin",
+      "titre": "Tout en haut",
+      "concept": "regarder où va Pépin",
+      "consigne": "Regarde bien mon petit nez (la flèche) : il montre où j'avance. Ici, je regarde vers le haut !",
+      "blocs": [
+        "avancer",
+        "arroser"
+      ],
+      "carte": [
+        ".o.",
+        "...",
+        ".^."
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_arroser"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "le-coin",
+      "type": "jardin",
+      "titre": "Le coin",
+      "concept": "tourner",
+      "consigne": "Le chemin fait un virage ! Le bloc « tourner » me fait pivoter sur place, sans avancer.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser"
+      ],
+      "carte": [
+        ">..",
+        "##o"
+      ],
+      "exigences": {
+        "maxBlocs": 5
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_tourner",
+                          "fields": {
+                            "DIR": "droite"
+                          },
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_arroser"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "demi-tour",
+      "type": "jardin",
+      "titre": "Demi-tour !",
+      "concept": "faire demi-tour",
+      "consigne": "Oups, la graine est derrière moi ! Combien de fois faut-il tourner pour faire demi-tour ?",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser"
+      ],
+      "carte": [
+        "o.>."
+      ],
+      "exigences": {
+        "maxBlocs": 5
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_tourner",
+                  "fields": {
+                    "DIR": "droite"
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_tourner",
+                      "fields": {
+                        "DIR": "droite"
+                      },
+                      "next": {
+                        "block": {
+                          "type": "pepin_avancer",
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_arroser"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "la-ligne",
+      "type": "jardin",
+      "titre": "La ligne de graines",
+      "concept": "répéter",
+      "consigne": "Quatre graines en ligne ! Au lieu d'écrire 8 blocs, mets « avancer » et « arroser » dans le bloc « répéter ».",
+      "blocs": [
+        "avancer",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        ">oooo"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 4
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "pepin_arroser"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "les-marches",
+      "type": "jardin",
+      "titre": "Les marches",
+      "concept": "trouver le motif",
+      "consigne": "Un petit escalier ! Cherche ce qui se répète à chaque marche : avancer, arroser, monter…",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        "###.",
+        "##.o",
+        "#.o#",
+        ">o##"
+      ],
+      "exigences": {
+        "maxBlocs": 6
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 3
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "pepin_arroser",
+                            "next": {
+                              "block": {
+                                "type": "pepin_tourner",
+                                "fields": {
+                                  "DIR": "gauche"
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "pepin_avancer",
+                                    "next": {
+                                      "block": {
+                                        "type": "pepin_tourner",
+                                        "fields": {
+                                          "DIR": "droite"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "le-bassin",
+      "type": "jardin",
+      "titre": "Le tour du bassin",
+      "concept": "un motif qui tourne",
+      "consigne": "Fais le tour du bassin en arrosant chaque coin. Chaque côté, c'est le même motif !",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        ">..o",
+        ".##.",
+        ".##.",
+        "o..o"
+      ],
+      "exigences": {
+        "maxBlocs": 7
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 3
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "pepin_avancer",
+                            "next": {
+                              "block": {
+                                "type": "pepin_avancer",
+                                "next": {
+                                  "block": {
+                                    "type": "pepin_arroser",
+                                    "next": {
+                                      "block": {
+                                        "type": "pepin_tourner",
+                                        "fields": {
+                                          "DIR": "droite"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "vitrine": 7
+}

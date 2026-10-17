@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pépin · le petit jardin du code</title>
+  <meta name="description" content="Programme Pépin, un petit robot jardinier, avec des blocs ou en Python : boucles, conditions, listes, récursivité… Un jeu pour apprendre à coder, de l'école au lycée.">
+  <meta name="theme-color" content="#FFF8EC">
+  <!-- Le bon thème tout de suite, pour éviter un « flash » blanc la nuit -->
+  <script>
+    try {
+      const choix = JSON.parse(localStorage.getItem('pepin.theme'));
+      document.documentElement.dataset.theme = choix
+        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch (e) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  </script>
+  <!-- L'icône de l'app (onglet, écran d'accueil de l'iPhone, Android) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icones/favicon-32.png">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pépin">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta property="og:title" content="Pépin · le petit jardin du code">
+  <meta property="og:description" content="Un jeu pour apprendre à coder avec un petit robot jardinier : blocs ou Python, de l'école au lycée.">
+  <meta property="og:image" content="icones/apercu-1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Blockly : la bibliothèque de blocs (comme Scratch) -->
+  <script src="https://unpkg.com/blockly@11.2.1/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly@11.2.1/python_compressed.js"></script>
+  <script src="https://unpkg.com/blockly@11.2.1/msg/fr.js"></script>
+
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <button id="btn-accueil" class="marque" aria-label="Pépin, retour à l'accueil">
+      <canvas id="logo" class="logo-pepin" aria-hidden="true"></canvas>
+      <span class="marque-texte">
+        <span class="logo">Pépin</span>
+        <span class="slogan">le petit jardin du code</span>
+      </span>
+    </button>
+    <nav class="barre" aria-label="Réglages">
+      <button id="btn-profil" class="btn btn-petit btn-profil" title="Ton prénom et ta classe">👤 Qui joue ?</button>
+      <button id="btn-mondes" class="btn btn-petit" aria-label="Mondes" hidden>🌍<span class="texte-large"> Mondes</span></button>
+      <button id="btn-son" class="btn-rond" aria-pressed="false" title="Activer les sons">🔇</button>
+      <button id="btn-theme" class="btn-rond" title="Mode nuit">🌙</button>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <!-- ================= Accueil : choisir un monde ================= -->
+    <section id="vue-accueil" class="accueil">
+      <div class="hero">
+        <canvas id="portrait-accueil" class="portrait-hero" aria-hidden="true"></canvas>
+        <div class="hero-texte">
+          <h1>Bonjour, moi c'est Pépin !</h1>
+          <div id="bulle-accueil" class="bulle bulle-hero" aria-live="polite"></div>
+          <div class="ligne-stats">
+            <ul id="stats" class="stats" aria-label="Ta progression"></ul>
+            <button id="btn-sauvegarde" class="btn btn-petit">💾 Ma sauvegarde</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="titre-section">🏖️ Bac à sable <span class="sous-titre">pas de niveau à réussir : programme ce que tu veux !</span></h2>
+      <div id="grille-bac" class="grille-mondes grille-bac"></div>
+
+      <section class="recherche" role="search" aria-label="Trouver un monde ou un niveau">
+        <h2 class="titre-section titre-recherche">🔎 Trouver un monde</h2>
+        <input id="recherche-texte" class="recherche-texte" type="search" autocomplete="off"
+               placeholder="Une notion, un titre… (boucles, récursivité, tri, labyrinthe…)" aria-label="Rechercher">
+        <div id="recherche-filtres" class="filtres"></div>
+        <div class="recherche-pied">
+          <p id="recherche-resume" class="recherche-resume" aria-live="polite"></p>
+          <button id="recherche-effacer" class="btn btn-petit" hidden>✖ Tout effacer</button>
+        </div>
+        <div id="recherche-niveaux" class="recherche-niveaux" hidden></div>
+      </section>
+
+      <h2 class="titre-section">📚 La bibliothèque</h2>
+      <div id="grille-bibliotheque" class="grille-mondes"></div>
+
+      <h2 class="titre-section">🎒 Mes mondes</h2>
+      <div id="grille-mes-mondes" class="grille-mondes"></div>
+      <input id="fichier-monde" type="file" accept=".pepin,.json,application/json" hidden>
+
+      <h2 class="titre-section">🧑‍🏫 Pour les profs</h2>
+      <div class="grille-mondes">
+        <button id="btn-tableau" class="carte-monde carte-action">
+          <span class="grand">📊</span>
+          <span>Suivre ma classe</span>
+          <span class="petit">qui a réussi quoi</span>
+        </button>
+        <div class="carte-monde carte-info">
+          <h3>Comment ça marche ?</h3>
+          <ol>
+            <li>Partage un monde à ta classe avec 🔗 (lien ou QR code).</li>
+            <li>Chaque élève clique sur <strong>📮 Rendre mon travail</strong> et t'envoie son code (ENT, mail…).</li>
+            <li>Colle les codes dans <strong>📊 Suivre ma classe</strong> : je refais tourner chaque programme pour vérifier !</li>
+          </ol>
+          <p class="petit-texte">Aucun compte, aucun serveur : les données restent sur les ordinateurs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Le jeu ================= -->
+    <section id="vue-jeu" hidden>
+      <nav class="jardin" aria-label="Niveaux">
+        <span id="nom-monde" class="nom-monde"></span>
+        <div id="jardin" class="pots"></div>
+        <button id="btn-rendre" class="btn btn-petit btn-rendre" title="Envoyer ta progression à ton prof">📮 Rendre mon travail</button>
+      </nav>
+
+      <div class="jeu">
+        <section class="scene">
+          <div class="scene-titre">
+            <h2 id="titre-niveau"></h2>
+            <span id="concept" class="concept" hidden></span>
+          </div>
+
+          <div class="parole">
+            <canvas id="portrait" class="portrait" aria-hidden="true"></canvas>
+            <p id="bulle-texte" class="bulle" aria-live="polite"></p>
+          </div>
+
+          <p id="objectif" class="objectif"></p>
+          <p id="defi" class="defi" hidden></p>
+
+          <div class="plateau-cadre">
+            <canvas id="plateau" role="img" aria-label="La scène de Pépin"></canvas>
+          </div>
+          <div id="essais" class="essais" hidden></div>
+
+          <div class="commandes">
+            <button id="btn-lancer" class="btn btn-principal">▶ Lancer</button>
+            <button id="btn-etape" class="btn" title="Exécute ton programme une action à la fois : un clic = une action">👣 Pas à pas</button>
+            <button id="btn-reset" class="btn">↺ Recommencer</button>
+            <button id="btn-vitesse" class="btn">🚶 Normal</button>
+            <button id="btn-terrain" class="btn" hidden>🎲 Nouveau terrain</button>
+            <button id="btn-chat" class="btn btn-chat" hidden>🐱 Je donne ma langue au chat</button>
+          </div>
+
+          <div id="memoire" class="memoire" hidden>
+            <div class="memoire-bloc">
+              <h3>🫙 Les variables</h3>
+              <div id="bocaux" class="bocaux"></div>
+            </div>
+            <div class="memoire-bloc">
+              <h3>📚 La pile des fonctions</h3>
+              <ol id="pile" class="pile"></ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="atelier">
+          <div class="atelier-entete">
+            <div class="bascule" role="group" aria-label="Façon de programmer">
+              <button id="mode-blocs" class="bascule-choix" aria-pressed="true">🧩 Blocs</button>
+              <button id="mode-python" class="bascule-choix" aria-pressed="false">🐍 Python</button>
+            </div>
+            <span class="astuce"><kbd>Ctrl</kbd> + <kbd>Entrée</kbd> pour lancer</span>
+          </div>
+          <div id="blockly" class="blockly"></div>
+          <div id="zone-python" class="zone-python" hidden>
+            <div id="editeur-python" class="editeur-python"></div>
+            <details class="aide-python" open>
+              <summary>📖 Les fonctions de Pépin</summary>
+              <ul id="aide-python"></ul>
+            </details>
+          </div>
+          <details id="traduction" class="traduction">
+            <summary>🐍 Voir mon programme en Python</summary>
+            <pre id="code-python"></pre>
+          </details>
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= Éditeur de monde ================= -->
+    <section id="vue-monde" class="editeur" hidden>
+      <div class="editeur-entete">
+        <button id="em-retour" class="btn btn-petit">← Mes mondes</button>
+        <h2>✏️ Modifier le monde</h2>
+      </div>
+      <div class="editeur-grille">
+        <div class="panneau">
+          <label class="champ">Titre
+            <input id="em-titre" maxlength="40">
+          </label>
+          <label class="champ">Auteur
+            <input id="em-auteur" maxlength="40" placeholder="ton prénom, ta classe…">
+          </label>
+          <label class="champ">Description
+            <textarea id="em-description" maxlength="200" rows="3" placeholder="le thème, le niveau scolaire…"></textarea>
+          </label>
+          <label class="champ">Difficulté
+            <select id="em-difficulte">
+              <option value="1">🌱 Débutant</option>
+              <option value="2">🌿 Intermédiaire</option>
+              <option value="3">🌳 Avancé</option>
+              <option value="4">🔥 Expert</option>
+            </select>
+          </label>
+          <label class="case-a-cocher">
+            <input id="em-solutions" type="checkbox">
+            Les élèves peuvent voir les solutions (« langue au chat » 🐱)
+          </label>
+          <p id="em-solutions-aide" class="aide-champ"></p>
+          <div class="commandes commandes-gauche">
+            <button id="em-jouer" class="btn">▶ Jouer</button>
+            <button id="em-partager" class="btn btn-principal">🔗 Partager</button>
+            <button id="em-exporter" class="btn">⬇ Fichier</button>
+          </div>
+          <div id="em-etat" class="etat-monde" aria-live="polite"></div>
+        </div>
+        <div class="panneau">
+          <h3 class="titre-panneau">Les niveaux</h3>
+          <ol id="em-niveaux" class="liste-niveaux"></ol>
+          <div class="ajout-niveau">
+            <span>➕ Ajouter :</span>
+            <button class="btn btn-petit" data-type="jardin">🌱 Jardin</button>
+            <button class="btn btn-petit" data-type="etagere">🪴 Serre</button>
+            <button class="btn btn-petit" data-type="fractale">🌀 Forêt</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Éditeur de niveau ================= -->
+    <section id="vue-niveau" class="editeur" hidden>
+      <div class="editeur-entete">
+        <button id="en-retour" class="btn btn-petit">← Retour au monde</button>
+        <h2 id="en-titre-page"></h2>
+      </div>
+      <div class="editeur-grille">
+        <div class="panneau">
+          <!-- Jardin : on peint la carte -->
+          <div id="en-jardin" class="panneau-type">
+            <div class="plateau-cadre">
+              <canvas id="en-carte" class="carte-editeur" aria-label="Le jardin : clique pour peindre"></canvas>
+            </div>
+            <div id="en-palette" class="palette" aria-label="Pinceau"></div>
+            <div class="tailles">
+              <span>Largeur</span>
+              <button id="en-l-moins" class="btn btn-petit" aria-label="Moins large">−</button>
+              <output id="en-largeur"></output>
+              <button id="en-l-plus" class="btn btn-petit" aria-label="Plus large">+</button>
+              <span>Hauteur</span>
+              <button id="en-h-moins" class="btn btn-petit" aria-label="Moins haut">−</button>
+              <output id="en-hauteur"></output>
+              <button id="en-h-plus" class="btn btn-petit" aria-label="Plus haut">+</button>
+            </div>
+          </div>
+
+          <!-- Serre : l'objectif et les étagères de test -->
+          <div id="en-serre" class="panneau-type" hidden>
+            <div class="plateau-cadre">
+              <canvas id="en-apercu-serre" class="apercu-editeur" aria-hidden="true"></canvas>
+            </div>
+            <fieldset class="champ-choix">
+              <legend>🎯 Objectif</legend>
+              <label class="case-a-cocher"><input type="radio" name="en-objectif" value="cible"> Amener chaque plante à son drapeau 🚩</label>
+              <label class="case-a-cocher"><input type="radio" name="en-objectif" value="trier"> Ranger du plus petit au plus grand</label>
+              <label class="case-a-cocher"><input type="radio" name="en-objectif" value="reponse"> Répondre une valeur 💬</label>
+            </fieldset>
+            <p class="essais-titre">Étagères de test <small>— le programme doit marcher pour toutes !</small></p>
+            <ol id="en-essais" class="liste-essais"></ol>
+            <button id="en-ajouter-essai" class="btn btn-petit">➕ Ajouter une étagère</button>
+          </div>
+
+          <!-- Forêt : le modèle est le dessin de la solution -->
+          <div id="en-foret" class="panneau-type" hidden>
+            <div class="plateau-cadre">
+              <canvas id="en-apercu-foret" class="apercu-editeur" aria-hidden="true"></canvas>
+            </div>
+            <p id="en-foret-info" class="info-foret"></p>
+            <button id="en-effacer-modele" class="btn btn-petit">🗑 Effacer le modèle</button>
+          </div>
+        </div>
+
+        <div class="panneau">
+          <label class="champ">Titre du niveau
+            <input id="en-titre" maxlength="40">
+          </label>
+          <label class="champ"><span>Notion découverte <small>(facultatif)</small></span>
+            <input id="en-concept" maxlength="40" placeholder="ex : la boucle « répéter »">
+          </label>
+          <label class="champ">Ce que dit Pépin au début
+            <textarea id="en-consigne" maxlength="300" rows="3"></textarea>
+          </label>
+          <label class="champ"><span>🏅 Défi bonus : nombre de blocs maximum <small>(facultatif)</small></span>
+            <input id="en-max-blocs" type="number" min="1" max="200" placeholder="aucun défi">
+          </label>
+          <fieldset class="champ-blocs">
+            <legend>Blocs disponibles</legend>
+            <div id="en-blocs" class="blocs-choix"></div>
+          </fieldset>
+          <div id="en-verification" class="verification" aria-live="polite"></div>
+          <button id="en-tester" class="btn btn-principal">🧪 Tester mon niveau</button>
+        </div>
+      </div>
+    </section>
+  <!-- ================= Le tableau de bord du prof ================= -->
+  <section id="vue-prof" class="editeur" hidden>
+    <div class="editeur-entete">
+      <button id="tp-retour" class="btn btn-petit">← Accueil</button>
+      <h2>📊 Le tableau de bord de la classe</h2>
+    </div>
+    <div class="panneau">
+      <p class="intro-prof">
+        Demande à tes élèves de cliquer sur <strong>📮 Rendre mon travail</strong> dans un monde, puis de t'envoyer
+        leur code (ou leur fichier). Colle-les ici, même tous d'un coup : je refais tourner chaque programme pour vérifier ✅
+      </p>
+      <textarea id="tp-codes" rows="3" placeholder="Colle un ou plusieurs codes de rendu (ils commencent par R1.)" aria-label="Codes de rendu"></textarea>
+      <div class="commandes commandes-gauche">
+        <button id="tp-ajouter" class="btn btn-principal">➕ Ajouter</button>
+        <button id="tp-fichiers" class="btn">📂 Choisir des fichiers…</button>
+        <input id="tp-fichiers-input" type="file" multiple accept=".pepin,.json,application/json" hidden>
+      </div>
+      <div id="tp-message" class="message-prof" aria-live="polite"></div>
+    </div>
+
+    <div id="tp-resultats" class="panneau panneau-tableau">
+      <div class="filtres">
+        <label class="champ">Monde
+          <select id="tp-monde"></select>
+        </label>
+        <label class="champ">Classe
+          <select id="tp-classe"></select>
+        </label>
+      </div>
+      <p id="tp-avertissement" class="avertissement" hidden></p>
+      <div class="tableau-cadre">
+        <table id="tp-tableau" class="tableau-classe"></table>
+      </div>
+      <p class="legende">
+        ✅ réussi (programme revérifié) · 🏅 défi réussi · 🐍 réussi en Python (clique pour lire le code) ·
+        ⚠️ le programme rendu ne réussit pas le niveau · ❔ réussi, mais sans programme · <em>clique sur une case pour voir le programme</em>
+      </p>
+      <div class="commandes commandes-gauche">
+        <button id="tp-csv" class="btn">⬇ Exporter pour un tableur</button>
+        <button id="tp-effacer" class="btn">🗑 Effacer les rendus de ce monde</button>
+      </div>
+    </div>
+    <div id="tp-vide" class="panneau vide-prof" hidden>
+      <p>📭 Aucun rendu pour l'instant. Dès que tu auras collé les codes de tes élèves, le tableau apparaîtra ici.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ================= Fenêtres ================= -->
+  <dialog id="dialogue-profil" class="dialogue">
+    <h2>👤 Qui joue ?</h2>
+    <p>Ton prénom et ta classe servent seulement quand tu rends ton travail à ton prof. Rien n'est envoyé sur internet.</p>
+    <label class="champ">Prénom
+      <input id="profil-prenom" maxlength="30" autocomplete="given-name">
+    </label>
+    <label class="champ"><span>Classe <small>(facultatif)</small></span>
+      <input id="profil-classe" maxlength="15" placeholder="ex : 5e B">
+    </label>
+    <p id="profil-erreur" class="erreur" hidden>Il me faut au moins ton prénom 🙂</p>
+    <div class="commandes">
+      <button id="profil-annuler" class="btn">Annuler</button>
+      <button id="profil-valider" class="btn btn-principal">C'est moi !</button>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-sauvegarde" class="dialogue">
+    <h2>💾 Ma sauvegarde</h2>
+    <p>Ta progression est gardée <strong>dans ce navigateur</strong>. Pour la retrouver sur un autre ordinateur (ou si le navigateur est nettoyé), garde une sauvegarde :</p>
+    <div class="commandes commandes-gauche">
+      <button id="sauvegarde-telecharger" class="btn btn-principal">⬇ Télécharger ma sauvegarde</button>
+      <button id="sauvegarde-copier" class="btn">📋 Copier le code</button>
+    </div>
+    <h3 class="sous-titre-dialogue">Retrouver ma progression</h3>
+    <textarea id="sauvegarde-texte" rows="3" placeholder="Colle ici ton code de sauvegarde (il commence par S1.)" aria-label="Code de sauvegarde"></textarea>
+    <p id="sauvegarde-message" class="petit-texte" aria-live="polite"></p>
+    <div class="commandes">
+      <button id="sauvegarde-fichier" class="btn">📂 Choisir un fichier…</button>
+      <button id="sauvegarde-restaurer" class="btn btn-principal">Restaurer</button>
+      <button id="sauvegarde-fermer" class="btn">Fermer</button>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-rendu" class="dialogue">
+    <h2>📮 Rendre mon travail</h2>
+    <div id="rendu-identite">
+      <p>D'abord, dis-moi qui tu es :</p>
+      <label class="champ">Prénom
+        <input id="rendu-prenom" maxlength="30" autocomplete="given-name">
+      </label>
+      <label class="champ"><span>Classe <small>(facultatif)</small></span>
+        <input id="rendu-classe" maxlength="15" placeholder="ex : 5e B">
+      </label>
+      <div class="commandes">
+        <button id="rendu-identite-valider" class="btn btn-principal">Continuer</button>
+      </div>
+    </div>
+    <div id="rendu-code-zone" hidden>
+      <p id="rendu-resume"></p>
+      <p>Envoie ce code à ton prof (par l'ENT, un mail…). Il contient tes niveaux réussis et tes programmes 😉</p>
+      <textarea id="rendu-code" rows="4" readonly aria-label="Code de rendu"></textarea>
+      <div class="commandes">
+        <button id="rendu-copier" class="btn btn-principal">📋 Copier</button>
+        <button id="rendu-fichier" class="btn">⬇ Fichier</button>
+        <button id="rendu-fermer" class="btn">Fermer</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-programme" class="dialogue dialogue-large">
+    <h2 id="programme-titre"></h2>
+    <p id="programme-etat" class="sous-titre"></p>
+    <div id="programme-blocs" class="solution-blocs"></div>
+    <pre id="programme-python" class="solution-python"></pre>
+    <div class="commandes">
+      <button id="programme-fermer" class="btn btn-principal">Fermer</button>
+    </div>
+  </dialog>
+
+  <dialog id="victoire" class="dialogue victoire">
+    <div id="petales" class="petales" aria-hidden="true"></div>
+    <canvas id="portrait-victoire" class="portrait-grand" aria-hidden="true"></canvas>
+    <h2 id="victoire-titre">Bravo !</h2>
+    <p id="victoire-texte"></p>
+    <p id="victoire-bonus" class="bonus" hidden></p>
+    <div class="commandes">
+      <button id="btn-rejouer" class="btn">Rejouer</button>
+      <button id="btn-suivant" class="btn btn-principal">Niveau suivant →</button>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-solution" class="dialogue dialogue-large">
+    <h2>🐱 La solution de l'auteur</h2>
+    <p class="sous-titre">Regarde-la bien… puis essaie de la refaire toi-même 😉</p>
+    <div id="solution-blocs" class="solution-blocs"></div>
+    <pre id="solution-python" class="solution-python"></pre>
+    <div class="commandes">
+      <button id="solution-copier" class="btn">📋 Mettre dans mon programme</button>
+      <button id="solution-fermer" class="btn btn-principal">Fermer</button>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-partage" class="dialogue">
+    <h2>🔗 Partager « <span id="partage-titre"></span> »</h2>
+    <p id="partage-explication"></p>
+    <div class="ligne-lien">
+      <input id="partage-lien" readonly aria-label="Lien de partage">
+      <button id="partage-copier" class="btn btn-principal">📋 Copier</button>
+    </div>
+    <div id="partage-qr" class="qr"></div>
+    <p id="partage-info" class="petit-texte"></p>
+    <div class="commandes">
+      <button id="partage-fichier" class="btn">⬇ Télécharger le fichier</button>
+      <button id="partage-complet" class="btn" title="Avec tes solutions : à garder pour toi, ou pour un collègue" hidden>⬇ Version complète (pour toi)</button>
+      <button id="partage-fermer" class="btn">Fermer</button>
+    </div>
+  </dialog>
+
+  <dialog id="dialogue-ouvrir" class="dialogue">
+    <h2>🔗 Ouvrir un lien ou un code</h2>
+    <p>Colle ici le lien (ou le code) qu'on t'a envoyé :</p>
+    <textarea id="ouvrir-texte" rows="4" placeholder="https://…#monde=P1.…" aria-label="Lien ou code"></textarea>
+    <p id="ouvrir-erreur" class="erreur" hidden></p>
+    <div class="commandes">
+      <button id="ouvrir-annuler" class="btn">Annuler</button>
+      <button id="ouvrir-valider" class="btn btn-principal">Ouvrir</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="pied">
+    Fait avec 🌱 pour apprendre à coder ·
+    <a href="tests.html">Tests du moteur</a> ·
+    <a href="mondes/README.md">Créer un monde (format)</a>
+  </footer>
+</body>
+</html>

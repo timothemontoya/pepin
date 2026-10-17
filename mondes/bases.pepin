@@ -1,0 +1,624 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "bases",
+  "titre": "Les bases",
+  "auteur": "L'équipe Pépin",
+  "description": "Les premiers pas de Pépin : instructions, boucles, conditions et fonctions. Parfait pour commencer !",
+  "difficulte": 1,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "premiers-pas",
+      "type": "jardin",
+      "titre": "Premiers pas",
+      "concept": "les instructions",
+      "consigne": "Coucou, moi c'est Pépin ! 🌱 Aide-moi à aller jusqu'à la graine pour l'arroser. Accroche les blocs sous « quand je clique sur Lancer ».",
+      "blocs": [
+        "avancer",
+        "arroser"
+      ],
+      "carte": [
+        ".....",
+        ">..o.",
+        "....."
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_avancer",
+                          "next": {
+                            "block": {
+                              "type": "pepin_arroser"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "le-virage",
+      "type": "jardin",
+      "titre": "Le virage",
+      "concept": null,
+      "consigne": "Oh, un rocher me bloque le passage… Heureusement, je sais tourner !",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser"
+      ],
+      "carte": [
+        "#####",
+        "#>..#",
+        "###.#",
+        "###o#",
+        "#####"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "pepin_avancer",
+                  "next": {
+                    "block": {
+                      "type": "pepin_avancer",
+                      "next": {
+                        "block": {
+                          "type": "pepin_tourner",
+                          "fields": {
+                            "DIR": "droite"
+                          },
+                          "next": {
+                            "block": {
+                              "type": "pepin_avancer",
+                              "next": {
+                                "block": {
+                                  "type": "pepin_avancer",
+                                  "next": {
+                                    "block": {
+                                      "type": "pepin_arroser"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "en-rang",
+      "type": "jardin",
+      "titre": "En rang d'oignons",
+      "concept": "la boucle « répéter »",
+      "consigne": "Quatre graines bien alignées ! Tu pourrais tout écrire bloc par bloc… ou utiliser « répéter » pour aller plus vite. 😉",
+      "blocs": [
+        "avancer",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        "###########",
+        "#>o.o.o.o.#",
+        "###########"
+      ],
+      "exigences": {
+        "maxBlocs": 4
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 4
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "pepin_arroser",
+                            "next": {
+                              "block": {
+                                "type": "pepin_avancer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "escalier",
+      "type": "jardin",
+      "titre": "L'escalier",
+      "concept": null,
+      "consigne": "Un escalier de graines ! Trouve le petit motif qui se répète.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "repeter"
+      ],
+      "carte": [
+        "########",
+        "#v######",
+        "#o.#####",
+        "##o.####",
+        "###o.###",
+        "####o.##",
+        "########"
+      ],
+      "exigences": {
+        "maxBlocs": 6
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat",
+                  "fields": {
+                    "TIMES": 4
+                  },
+                  "inputs": {
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "pepin_arroser",
+                            "next": {
+                              "block": {
+                                "type": "pepin_tourner",
+                                "fields": {
+                                  "DIR": "gauche"
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "pepin_avancer",
+                                    "next": {
+                                      "block": {
+                                        "type": "pepin_tourner",
+                                        "fields": {
+                                          "DIR": "droite"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "long-couloir",
+      "type": "jardin",
+      "titre": "Le long couloir",
+      "concept": "la boucle « tant que »",
+      "consigne": "Ce couloir est si long que j'ai la flemme de compter les cases. Fais-moi avancer TANT QUE la voie est libre !",
+      "blocs": [
+        "avancer",
+        "arroser",
+        "tantQue",
+        "devantLibre"
+      ],
+      "carte": [
+        "##############",
+        "#>..........o#",
+        "##############"
+      ],
+      "exigences": {
+        "maxBlocs": 4
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "pepin_devant_libre"
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer"
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_arroser"
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "graines-surprises",
+      "type": "jardin",
+      "titre": "Graines surprises",
+      "concept": "la condition « si »",
+      "consigne": "Quelqu'un a semé des graines un peu n'importe où ! Je ne dois arroser que SI je suis sur une graine.",
+      "blocs": [
+        "avancer",
+        "arroser",
+        "tantQue",
+        "si",
+        "devantLibre",
+        "surGraine"
+      ],
+      "carte": [
+        "############",
+        "#>.o..oo.o.#",
+        "############"
+      ],
+      "exigences": {
+        "maxBlocs": 6
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "pepin_devant_libre"
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "pepin_avancer",
+                        "next": {
+                          "block": {
+                            "type": "controls_if",
+                            "inputs": {
+                              "IF0": {
+                                "block": {
+                                  "type": "pepin_sur_graine"
+                                }
+                              },
+                              "DO0": {
+                                "block": {
+                                  "type": "pepin_arroser"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "labyrinthe",
+      "type": "jardin",
+      "titre": "Le labyrinthe",
+      "concept": "la condition « si … sinon »",
+      "consigne": "Un vrai labyrinthe ! Ma technique secrète : si la voie est libre, j'avance… sinon, je tourne. Et je recommence tant que je ne suis pas sur la graine !",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "tantQue",
+        "siSinon",
+        "non",
+        "devantLibre",
+        "surGraine"
+      ],
+      "carte": [
+        "#######",
+        "#>....#",
+        "#####.#",
+        "#o....#",
+        "#######"
+      ],
+      "exigences": {
+        "maxBlocs": 8
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_whileUntil",
+                  "fields": {
+                    "MODE": "WHILE"
+                  },
+                  "inputs": {
+                    "BOOL": {
+                      "block": {
+                        "type": "logic_negate",
+                        "inputs": {
+                          "BOOL": {
+                            "block": {
+                              "type": "pepin_sur_graine"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "controls_if",
+                        "extraState": {
+                          "hasElse": true
+                        },
+                        "inputs": {
+                          "IF0": {
+                            "block": {
+                              "type": "pepin_devant_libre"
+                            }
+                          },
+                          "DO0": {
+                            "block": {
+                              "type": "pepin_avancer"
+                            }
+                          },
+                          "ELSE": {
+                            "block": {
+                              "type": "pepin_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_arroser"
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "potager",
+      "type": "jardin",
+      "titre": "Le potager",
+      "concept": "les fonctions",
+      "consigne": "Trois rangées à arroser ! Crée ta propre fonction « arroser une rangée » dans la catégorie Fonctions, pour ne pas écrire trois fois la même chose.",
+      "blocs": [
+        "avancer",
+        "tourner",
+        "arroser",
+        "repeter",
+        "fonctions"
+      ],
+      "carte": [
+        "#######",
+        "#>ooo.#",
+        "#.ooo.#",
+        "#.ooo.#",
+        "#######"
+      ],
+      "exigences": {
+        "maxBlocs": 14
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "procedures_callnoreturn",
+                  "extraState": {
+                    "name": "arroser une rangée",
+                    "params": []
+                  },
+                  "next": {
+                    "block": {
+                      "type": "pepin_tourner",
+                      "fields": {
+                        "DIR": "droite"
+                      },
+                      "next": {
+                        "block": {
+                          "type": "pepin_avancer",
+                          "next": {
+                            "block": {
+                              "type": "pepin_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "procedures_callnoreturn",
+                                  "extraState": {
+                                    "name": "arroser une rangée",
+                                    "params": []
+                                  },
+                                  "next": {
+                                    "block": {
+                                      "type": "pepin_tourner",
+                                      "fields": {
+                                        "DIR": "gauche"
+                                      },
+                                      "next": {
+                                        "block": {
+                                          "type": "pepin_avancer",
+                                          "next": {
+                                            "block": {
+                                              "type": "pepin_tourner",
+                                              "fields": {
+                                                "DIR": "gauche"
+                                              },
+                                              "next": {
+                                                "block": {
+                                                  "type": "procedures_callnoreturn",
+                                                  "extraState": {
+                                                    "name": "arroser une rangée",
+                                                    "params": []
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "fields": {
+                "NAME": "arroser une rangée"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_repeat",
+                    "fields": {
+                      "TIMES": 3
+                    },
+                    "inputs": {
+                      "DO": {
+                        "block": {
+                          "type": "pepin_avancer",
+                          "next": {
+                            "block": {
+                              "type": "pepin_arroser"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "pepin_avancer"
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "vitrine": 6
+}

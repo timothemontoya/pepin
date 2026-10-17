@@ -1,0 +1,942 @@
+{
+  "format": "pepin-monde",
+  "version": 1,
+  "id": "atelier-des-formes",
+  "titre": "L'atelier des formes",
+  "auteur": "L'équipe Pépin",
+  "description": "Escaliers, polygones, rosaces et spirales : la géométrie avec Pépin ! Angles extérieurs, boucles imbriquées, fonctions à deux paramètres et compteur de boucle.",
+  "difficulte": 2,
+  "solutionsVisibles": true,
+  "niveaux": [
+    {
+      "id": "escalier",
+      "type": "fractale",
+      "titre": "L'escalier",
+      "concept": "un motif qui se répète",
+      "consigne": "Dessine un escalier de 5 marches de 20 pas. Une marche : monte, tourne à droite, avance, tourne à gauche.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 5
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 5
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 20
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 90
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "liane_pousser",
+                                "inputs": {
+                                  "LONGUEUR": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "fields": {
+                                        "NUM": 20
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "liane_tourner",
+                                    "fields": {
+                                      "DIR": "gauche"
+                                    },
+                                    "inputs": {
+                                      "ANGLE": {
+                                        "shadow": {
+                                          "type": "math_number",
+                                          "fields": {
+                                            "NUM": 90
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "triangle",
+      "type": "fractale",
+      "titre": "Le triangle",
+      "concept": "l'angle extérieur",
+      "consigne": "Un triangle équilatéral de côté 100. Piège ! L'angle À L'INTÉRIEUR du triangle fait 60°, mais moi, je dois tourner de 180 − 60 = … degrés pour repartir dans la bonne direction 🤔",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 3
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 100
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 120
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "panneau-stop",
+      "type": "fractale",
+      "titre": "Le panneau STOP",
+      "concept": "360 ÷ nombre de côtés",
+      "consigne": "Un panneau STOP, c'est un octogone : 8 côtés de 50. De combien tourner à chaque coin ? Indice : quand je reviens au départ, j'ai fait un tour complet sur moi-même, soit 360°.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 3
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 8
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 50
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 45
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "polygones",
+      "type": "fractale",
+      "titre": "La collection de polygones",
+      "concept": "une fonction à deux paramètres",
+      "consigne": "Crée une fonction « polygone » avec DEUX paramètres : le nombre de côtés n, et la longueur d'un côté. À chaque coin, tourne de 360 ÷ n. Puis dessine (au même endroit) un triangle, un carré, un pentagone et un hexagone, tous de côté 90.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre",
+        "fonctions",
+        "variables",
+        "calcul",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "procedures_callnoreturn",
+                  "extraState": {
+                    "name": "polygone",
+                    "params": [
+                      "n",
+                      "cote"
+                    ]
+                  },
+                  "inputs": {
+                    "ARG0": {
+                      "block": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 3
+                        }
+                      }
+                    },
+                    "ARG1": {
+                      "block": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 90
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "procedures_callnoreturn",
+                      "extraState": {
+                        "name": "polygone",
+                        "params": [
+                          "n",
+                          "cote"
+                        ]
+                      },
+                      "inputs": {
+                        "ARG0": {
+                          "block": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 4
+                            }
+                          }
+                        },
+                        "ARG1": {
+                          "block": {
+                            "type": "math_number",
+                            "fields": {
+                              "NUM": 90
+                            }
+                          }
+                        }
+                      },
+                      "next": {
+                        "block": {
+                          "type": "procedures_callnoreturn",
+                          "extraState": {
+                            "name": "polygone",
+                            "params": [
+                              "n",
+                              "cote"
+                            ]
+                          },
+                          "inputs": {
+                            "ARG0": {
+                              "block": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 5
+                                }
+                              }
+                            },
+                            "ARG1": {
+                              "block": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 90
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "procedures_callnoreturn",
+                              "extraState": {
+                                "name": "polygone",
+                                "params": [
+                                  "n",
+                                  "cote"
+                                ]
+                              },
+                              "inputs": {
+                                "ARG0": {
+                                  "block": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 6
+                                    }
+                                  }
+                                },
+                                "ARG1": {
+                                  "block": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 90
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "extraState": {
+                "params": [
+                  {
+                    "name": "n",
+                    "id": "v-n"
+                  },
+                  {
+                    "name": "cote",
+                    "id": "v-cote"
+                  }
+                ]
+              },
+              "fields": {
+                "NAME": "polygone"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_repeat_ext",
+                    "inputs": {
+                      "TIMES": {
+                        "block": {
+                          "type": "variables_get",
+                          "fields": {
+                            "VAR": {
+                              "id": "v-n"
+                            }
+                          }
+                        }
+                      },
+                      "DO": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "block": {
+                                "type": "variables_get",
+                                "fields": {
+                                  "VAR": {
+                                    "id": "v-cote"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "block": {
+                                    "type": "math_arithmetic",
+                                    "fields": {
+                                      "OP": "DIVIDE"
+                                    },
+                                    "inputs": {
+                                      "A": {
+                                        "block": {
+                                          "type": "math_number",
+                                          "fields": {
+                                            "NUM": 360
+                                          }
+                                        }
+                                      },
+                                      "B": {
+                                        "block": {
+                                          "type": "variables_get",
+                                          "fields": {
+                                            "VAR": {
+                                              "id": "v-n"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "n",
+            "id": "v-n"
+          },
+          {
+            "name": "cote",
+            "id": "v-cote"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rosace",
+      "type": "fractale",
+      "titre": "La rosace",
+      "concept": "les boucles imbriquées",
+      "consigne": "Une rosace : 12 carrés de côté 60. Après chaque carré, je tourne de 30° (12 × 30 = 360 !). Une boucle pour le carré… dans une boucle pour la rosace.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre"
+      ],
+      "exigences": {
+        "maxBlocs": 6
+      },
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 12
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "controls_repeat_ext",
+                        "inputs": {
+                          "TIMES": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 4
+                              }
+                            }
+                          },
+                          "DO": {
+                            "block": {
+                              "type": "liane_pousser",
+                              "inputs": {
+                                "LONGUEUR": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 60
+                                    }
+                                  }
+                                }
+                              },
+                              "next": {
+                                "block": {
+                                  "type": "liane_tourner",
+                                  "fields": {
+                                    "DIR": "droite"
+                                  },
+                                  "inputs": {
+                                    "ANGLE": {
+                                      "shadow": {
+                                        "type": "math_number",
+                                        "fields": {
+                                          "NUM": 90
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 30
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spirale-carree",
+      "type": "fractale",
+      "titre": "La spirale qui grandit",
+      "concept": "utiliser le compteur de boucle",
+      "consigne": "Une spirale carrée : le 1er trait fait 8, le 2e fait 16, le 3e fait 24… jusqu'au 15e. La boucle « compter avec i de 1 à 15 » te donne i : pousse de i × 8, puis tourne de 90°.",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "pour",
+        "variables",
+        "calcul",
+        "nombre"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_for",
+                  "fields": {
+                    "VAR": {
+                      "id": "v-i"
+                    }
+                  },
+                  "inputs": {
+                    "FROM": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 1
+                        }
+                      }
+                    },
+                    "TO": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 15
+                        }
+                      }
+                    },
+                    "BY": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 1
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "liane_pousser",
+                        "inputs": {
+                          "LONGUEUR": {
+                            "block": {
+                              "type": "math_arithmetic",
+                              "fields": {
+                                "OP": "MULTIPLY"
+                              },
+                              "inputs": {
+                                "A": {
+                                  "block": {
+                                    "type": "variables_get",
+                                    "fields": {
+                                      "VAR": {
+                                        "id": "v-i"
+                                      }
+                                    }
+                                  }
+                                },
+                                "B": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 8
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 90
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            }
+          ]
+        },
+        "variables": [
+          {
+            "name": "i",
+            "id": "v-i"
+          }
+        ]
+      }
+    },
+    {
+      "id": "la-fleur",
+      "type": "fractale",
+      "titre": "La fleur",
+      "concept": "découper un problème en fonctions",
+      "consigne": "Une fleur de 8 pétales ! Découpe le problème : « arc » = 9 fois (pousse de 10, tourne de 10°). « pétale » = arc, tourne de 90°, arc, tourne de 90°. « fleur » = 8 fois (pétale, tourne de 45°).",
+      "blocs": [
+        "pousser",
+        "tournerDe",
+        "repeterNombre",
+        "fonctions"
+      ],
+      "solution": {
+        "blocks": {
+          "languageVersion": 0,
+          "blocks": [
+            {
+              "type": "pepin_depart",
+              "next": {
+                "block": {
+                  "type": "controls_repeat_ext",
+                  "inputs": {
+                    "TIMES": {
+                      "shadow": {
+                        "type": "math_number",
+                        "fields": {
+                          "NUM": 8
+                        }
+                      }
+                    },
+                    "DO": {
+                      "block": {
+                        "type": "procedures_callnoreturn",
+                        "extraState": {
+                          "name": "pétale",
+                          "params": []
+                        },
+                        "next": {
+                          "block": {
+                            "type": "liane_tourner",
+                            "fields": {
+                              "DIR": "droite"
+                            },
+                            "inputs": {
+                              "ANGLE": {
+                                "shadow": {
+                                  "type": "math_number",
+                                  "fields": {
+                                    "NUM": 45
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 40,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "fields": {
+                "NAME": "arc"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "controls_repeat_ext",
+                    "inputs": {
+                      "TIMES": {
+                        "shadow": {
+                          "type": "math_number",
+                          "fields": {
+                            "NUM": 9
+                          }
+                        }
+                      },
+                      "DO": {
+                        "block": {
+                          "type": "liane_pousser",
+                          "inputs": {
+                            "LONGUEUR": {
+                              "shadow": {
+                                "type": "math_number",
+                                "fields": {
+                                  "NUM": 10
+                                }
+                              }
+                            }
+                          },
+                          "next": {
+                            "block": {
+                              "type": "liane_tourner",
+                              "fields": {
+                                "DIR": "droite"
+                              },
+                              "inputs": {
+                                "ANGLE": {
+                                  "shadow": {
+                                    "type": "math_number",
+                                    "fields": {
+                                      "NUM": 10
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 40
+            },
+            {
+              "type": "procedures_defnoreturn",
+              "fields": {
+                "NAME": "pétale"
+              },
+              "inputs": {
+                "STACK": {
+                  "block": {
+                    "type": "procedures_callnoreturn",
+                    "extraState": {
+                      "name": "arc",
+                      "params": []
+                    },
+                    "next": {
+                      "block": {
+                        "type": "liane_tourner",
+                        "fields": {
+                          "DIR": "droite"
+                        },
+                        "inputs": {
+                          "ANGLE": {
+                            "shadow": {
+                              "type": "math_number",
+                              "fields": {
+                                "NUM": 90
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "procedures_callnoreturn",
+                            "extraState": {
+                              "name": "arc",
+                              "params": []
+                            },
+                            "next": {
+                              "block": {
+                                "type": "liane_tourner",
+                                "fields": {
+                                  "DIR": "droite"
+                                },
+                                "inputs": {
+                                  "ANGLE": {
+                                    "shadow": {
+                                      "type": "math_number",
+                                      "fields": {
+                                        "NUM": 90
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "x": 440,
+              "y": 360
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "vitrine": 6
+}
